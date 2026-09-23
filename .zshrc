@@ -36,3 +36,15 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # Created by `pipx` on 2026-04-23 22:34:35
 export PATH="$PATH:/Users/capc0/.local/bin"
+
+dotfiles_check_updates() {
+  local stamp=~/.cache/dotfiles-last-check
+  [[ -f $stamp && $(( $(date +%s) - $(date -r $stamp +%s) )) -lt 14400 ]] && return
+  ( config fetch --quiet && touch "$stamp"
+    if [[ $(config rev-parse @) != $(config rev-parse @{u}) ]]; then
+      echo "dotfiles: updates available, run 'dotup'"
+    fi ) &!
+}
+dotfiles_check_updates
+
+alias dotup='~/install.sh'
