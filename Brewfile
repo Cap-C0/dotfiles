@@ -40,8 +40,6 @@ brew "pillow"
 brew "pipx"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Object-relational database system
-brew "postgresql@15", restart_service: :changed
 # Theme for zsh
 brew "powerlevel10k"
 # Generic syntax highlighter
